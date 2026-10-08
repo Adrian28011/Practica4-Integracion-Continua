@@ -1,0 +1,24 @@
+name: Alerta 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hola-mundo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      - name: Ejecutar codigo
+        run: node hola.js
+
+      - name: Enviar notificación a ntfy
+        run: |
+          curl -H "Title: Hola a todos de Adrián Alberto Santana Machuca" \
+               -H "Priority: default" \
+               -d "Hola Mundo" \
+               https://ntfy.sh/devops-itla
